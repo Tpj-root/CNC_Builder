@@ -17,10 +17,24 @@ Tips for planning to make a CNC machine
   <tbody>
     <tr>
       <td>1</td>
-      <td>Arduino Uno</td>
-      <td>Main microcontroller board</td>
-      <td><a href="B08Q7BLB6H">Buy</a></td>
-      <td>₹25</td>
+      <td>Lead Screw 1000mm</td>
+      <td>4 Start Lead Screw 8mm Thread 2mm Pitch Lead Screw with Copper Nut</td>
+      <td><a href="https://robocraze.com/products/1000mm-trapezoidal-4-start-lead-screw-8mm-thread-2mm-pitch-lead-screw-with-copper-nut?variant=43145763750112">Buy</a></td>
+      <td>₹ 637</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Lead Screw 600mm</td>
+      <td>4 Start Lead Screw 8mm Thread 2mm Pitch Lead Screw with Copper Nut</td>
+      <td><a href="https://robu.in/product/600mm-trapezoidal-lead-screw-8mm-thread-2mm-pitch-lead-screw-with-copper-nut/">Buy</a></td>
+      <td>₹ 307</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Lead Screw 150mm</td>
+      <td>4 Start Lead Screw 8mm Thread 2mm Pitch Lead Screw with Copper Nut</td>
+      <td><a href="https://robocraze.com/products/150mm-trapezoidal-4-start-lead-screw-8mm-thread-2mm-pitch-lead-screw-with-copper-nut?pr_prod_strat=e5_desc&pr_rec_id=3f8ea79d3&pr_rec_pid=7762162876640&pr_ref_pid=7762152849632&pr_seq=uniform">Buy</a></td>
+      <td>₹ 144</td>
     </tr>
     <tr>
       <td>2</td>
@@ -50,6 +64,42 @@ Tips for planning to make a CNC machine
 
 
 
+
+
+NOtes
+
+
+```
+Linear Motion Control
+
+
+Ball_Screw_Drive(Lead_screw) Speed = [3 meter per second]
+
+Belt_Drive Speed = [8-9 meter per second (m/s)]
+
+
+
+Stepper motor
+
+
+
+
+How fast is the actuator will need to move??
+
+
+Millimeters per seconds
+Inches per Seconds
+
+
+
+Stroke_Length
+
+
+
+
+
+
+```
 
 
 
