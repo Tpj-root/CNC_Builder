@@ -6,7 +6,7 @@
 // Constructor: Sets up the GUI, sliders, chart, and animation timer
 WaveControlWindow::WaveControlWindow(QWidget *parent)
     : QMainWindow(parent),
-      numMotors(24),             // Number of motors/bars
+      numMotors(50),             // Number of motors/bars
       amp(1.0),                  // Amplitude base value (not used directly)
       step(0.05),                // Time step increment per timer tick
       basePhaseShift(M_PI / 6), // Phase shift between each motor/bar
@@ -43,7 +43,7 @@ WaveControlWindow::WaveControlWindow(QWidget *parent)
     controlLayout->addWidget(strokeLengthSlider);
 
     // Create a label to display the current value of the slider
-    strokeLengthLabel = new QLabel("Stroke Length: 100");
+    strokeLengthLabel = new QLabel("Stroke Length: 0");
     controlLayout->addWidget(strokeLengthLabel);   // Add the label to the layout
 
 
