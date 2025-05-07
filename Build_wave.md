@@ -3,7 +3,7 @@ Tips for planning to make a CNC machine
 
 
 
-
+<h2>Project Parts List</h2>
 <table>
   <thead>
     <tr>
