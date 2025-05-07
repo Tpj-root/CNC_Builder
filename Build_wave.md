@@ -64,6 +64,10 @@ Tips for planning to make a CNC machine
 
 
 
+[![Watch the video](https://img.youtube.com/vi/0_AXoXkxtkk/hqdefault.jpg)](https://youtu.be/0_AXoXkxtkk)
+
+
+
 
 
 NOtes
