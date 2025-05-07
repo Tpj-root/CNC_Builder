@@ -1,63 +1,69 @@
 #include "wavecontrolwindow.h"
-#include <cmath>
+#include <cmath>       // for sin()
 #include <QSlider>
 #include <QLabel>
 
+// Constructor: Sets up the GUI, sliders, chart, and animation timer
 WaveControlWindow::WaveControlWindow(QWidget *parent)
     : QMainWindow(parent),
-      numMotors(12),
-      amp(1.0),  // Initial amplitude
-      step(0.05),
-      basePhaseShift(M_PI / 6),
-      waveFactorValue(1.0),  // Full wave initially
-      strokeLengthValue(5),  // Default stroke length
-      t(0.0)
+      numMotors(12),             // Number of motors/bars
+      amp(1.0),                  // Amplitude base value (not used directly)
+      step(0.05),                // Time step increment per timer tick
+      basePhaseShift(M_PI / 6), // Phase shift between each motor/bar
+      waveFactorValue(1.0),     // 1.0 = full sine wave
+      strokeLengthValue(5),     // Amplitude multiplier
+      t(0.0)                     // Initial time
 {
     mainWidget = new QWidget(this);
     mainLayout = new QVBoxLayout(mainWidget);
 
-    // Control Section with Sliders
+    // === SLIDER SECTION ===
+
     QVBoxLayout *controlLayout = new QVBoxLayout;
 
-    // Wave Factor Slider
+    // Wave Factor Slider: Adjusts the smoothness or wavelength of the sine wave
     waveFactorSlider = new QSlider(Qt::Horizontal);
-    waveFactorSlider->setRange(0, 100);  // range from 0 to 100 (0.0 to 1.0)
-    waveFactorSlider->setValue(100);  // Default value (full wave)
+    waveFactorSlider->setRange(0, 100);         // Value from 0 to 100
+    waveFactorSlider->setValue(100);            // Default = 100% wave
     connect(waveFactorSlider, &QSlider::valueChanged, this, &WaveControlWindow::updateWaveFactor);
     controlLayout->addWidget(new QLabel("Wave Factor"));
     controlLayout->addWidget(waveFactorSlider);
 
-    // Stroke Length Slider
+    // Stroke Length Slider: Controls amplitude of the sine wave
     strokeLengthSlider = new QSlider(Qt::Horizontal);
-    strokeLengthSlider->setRange(1, 10);  // range from 1 to 10 (for amplitude control)
-    strokeLengthSlider->setValue(5);  // Default value
+    strokeLengthSlider->setRange(1, 10);        // Value from 1 to 10
+    strokeLengthSlider->setValue(5);            // Default = 5
     connect(strokeLengthSlider, &QSlider::valueChanged, this, &WaveControlWindow::updateStrokeLength);
     controlLayout->addWidget(new QLabel("Stroke Length"));
     controlLayout->addWidget(strokeLengthSlider);
 
     mainLayout->addLayout(controlLayout);
 
-    // Chart Setup
-    setupChart();
-    mainLayout->addWidget(chartView);
+    // === CHART SECTION ===
+    setupChart();                      // Initializes the chart and bars
+    mainLayout->addWidget(chartView);  // Add chart to main layout
 
-    // Timer for animation
+    // === TIMER SECTION ===
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &WaveControlWindow::updateWave);
-    timer->start(50);
+    timer->start(50);  // Updates every 50 ms
 
+    // Final setup
     setCentralWidget(mainWidget);
     setWindowTitle("Wave Control with Sliders");
     resize(800, 400);
 }
 
+// Destructor: Nothing special here
 WaveControlWindow::~WaveControlWindow() {}
 
+
+// Setup chart elements: bars, axes, and rendering options
 void WaveControlWindow::setupChart()
 {
     barSet = new QBarSet("Motors");
     for (int i = 0; i < numMotors; ++i)
-        *barSet << 0;  // Initialize bars with 0 height
+        *barSet << 0;  // Initialize all motor values to 0
 
     series = new QBarSeries();
     series->append(barSet);
@@ -66,6 +72,7 @@ void WaveControlWindow::setupChart()
     chart->addSeries(series);
     chart->setTitle("Stepper Motors Moving Up/Down");
 
+    // X-Axis: shows each motor index
     axisX = new QBarCategoryAxis();
     QStringList categories;
     for (int i = 0; i < numMotors; ++i)
@@ -74,38 +81,39 @@ void WaveControlWindow::setupChart()
     chart->addAxis(axisX, Qt::AlignBottom);
     series->attachAxis(axisX);
 
+    // Y-Axis: wave amplitude (vertical movement)
     axisY = new QValueAxis;
-    axisY->setRange(-10, 10);  // Amplitude range for wave
+    axisY->setRange(-10, 10);  // Range for full wave swing
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
-    chart->legend()->hide();
+    chart->legend()->hide();  // Hide legend
     chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setRenderHint(QPainter::Antialiasing);  // Smoother rendering
 }
 
+// Update wave factor from slider (0.0 to 1.0)
 void WaveControlWindow::updateWaveFactor(int value)
 {
-    waveFactorValue = value / 100.0;  // Convert slider value to a float (0.0 - 1.0)
+    waveFactorValue = value / 100.0;
 }
 
+// Update stroke length (amplitude) from slider
 void WaveControlWindow::updateStrokeLength(int value)
 {
-    strokeLengthValue = value;  // Stroke length controls the amplitude (height of wave)
+    strokeLengthValue = value;
 }
 
+// Called by timer to animate the wave
 void WaveControlWindow::updateWave()
 {
-    double currentPhaseShift = basePhaseShift * waveFactorValue;  // Adjust phase shift based on wave factor
+    double currentPhaseShift = basePhaseShift * waveFactorValue;  // Phase shift scaled by wave factor
+
+    // Update each bar's height using sine wave
     for (int i = 0; i < numMotors; ++i) {
-        // Apply wave function to each motor (position the bar based on sin function)
-        double pos = strokeLengthValue * sin(2 * M_PI * 0.5 * t + i * currentPhaseShift);  // Use strokeLengthValue as the amplitude
-        barSet->replace(i, pos);  // Update bar height based on the wave
+        double pos = strokeLengthValue * sin(2 * M_PI * 0.5 * t + i * currentPhaseShift);  // Sine wave formula
+        barSet->replace(i, pos);  // Set bar height
     }
 
-    // Animate vertical movement of the bars (scroll the chart)
-    //chart->scroll(0, strokeLengthValue * sin(2 * M_PI * 0.5 * t));  // Scroll by the current wave value
-    t += step;
+    t += step;  // Advance time for next wave update
 }
-
-
