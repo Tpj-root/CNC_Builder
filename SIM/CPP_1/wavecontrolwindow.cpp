@@ -6,7 +6,7 @@
 // Constructor: Sets up the GUI, sliders, chart, and animation timer
 WaveControlWindow::WaveControlWindow(QWidget *parent)
     : QMainWindow(parent),
-      numMotors(12),             // Number of motors/bars
+      numMotors(24),             // Number of motors/bars
       amp(1.0),                  // Amplitude base value (not used directly)
       step(0.05),                // Time step increment per timer tick
       basePhaseShift(M_PI / 6), // Phase shift between each motor/bar
@@ -29,13 +29,24 @@ WaveControlWindow::WaveControlWindow(QWidget *parent)
     controlLayout->addWidget(new QLabel("Wave Factor"));
     controlLayout->addWidget(waveFactorSlider);
 
+    // Create a label to display the current value of the slider
+    waveFactorLabel = new QLabel("Wave Factor: ");
+    controlLayout->addWidget(waveFactorLabel);   // Add the label to the layout
+
+
     // Stroke Length Slider: Controls amplitude of the sine wave
     strokeLengthSlider = new QSlider(Qt::Horizontal);
-    strokeLengthSlider->setRange(1, 10);        // Value from 1 to 10
+    strokeLengthSlider->setRange(1, 30);        // Value from 1 to 10
     strokeLengthSlider->setValue(5);            // Default = 5
     connect(strokeLengthSlider, &QSlider::valueChanged, this, &WaveControlWindow::updateStrokeLength);
     controlLayout->addWidget(new QLabel("Stroke Length"));
     controlLayout->addWidget(strokeLengthSlider);
+
+    // Create a label to display the current value of the slider
+    strokeLengthLabel = new QLabel("Stroke Length: 100");
+    controlLayout->addWidget(strokeLengthLabel);   // Add the label to the layout
+
+
 
     mainLayout->addLayout(controlLayout);
 
@@ -83,7 +94,7 @@ void WaveControlWindow::setupChart()
 
     // Y-Axis: wave amplitude (vertical movement)
     axisY = new QValueAxis;
-    axisY->setRange(-10, 10);  // Range for full wave swing
+    axisY->setRange(-50, 50);  // Range for full wave swing
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
@@ -96,12 +107,14 @@ void WaveControlWindow::setupChart()
 void WaveControlWindow::updateWaveFactor(int value)
 {
     waveFactorValue = value / 100.0;
+    waveFactorLabel->setText("Wave Factor: " + QString::number(value));
 }
 
 // Update stroke length (amplitude) from slider
 void WaveControlWindow::updateStrokeLength(int value)
 {
     strokeLengthValue = value;
+    strokeLengthLabel->setText("stroke Length: " + QString::number(value));
 }
 
 // Called by timer to animate the wave

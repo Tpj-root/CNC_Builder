@@ -46,6 +46,8 @@ private:
     QBarSet *barSet;               // Actual bar set with data values
     QBarCategoryAxis *axisX;       // X-axis showing categories (motors)
     QValueAxis *axisY;             // Y-axis showing wave amplitude
+    QLabel *waveFactorLabel;  // Declare the label here
+    QLabel *strokeLengthLabel;
 
     // Wave control variables
     int numMotors;                 // Number of bars/motors
