@@ -124,4 +124,5 @@ https://ophysics.com/w0.html
 ```
 https://www.youtube.com/watch?app=desktop&v=hGCxUjjvIBk&ab_channel=ArthurGuy
 https://www.youtube.com/watch?v=WrFy2objT5k&ab_channel=RealPars
+https://www.youtube.com/watch?v=QtDiSeaXvQU&ab_channel=EVNautilus
 ```
