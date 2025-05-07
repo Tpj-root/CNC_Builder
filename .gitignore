@@ -1,0 +1,5 @@
+*.o
+*.exe
+
+
+SIM/CPP_1/moc_predefs.h
