@@ -7,31 +7,41 @@ Tips for planning to make a CNC machine
 <table>
   <thead>
     <tr>
+      <th>Sl.NO</th>
       <th>Part</th>
       <th>Description</th>
-      <th>Price (USD)</th>
+      <th>buylink</th>
+      <th>Price (IND)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td>1</td>
       <td>Arduino Uno</td>
       <td>Main microcontroller board</td>
-      <td>$25</td>
+      <td><a href="B08Q7BLB6H">Buy</a></td>
+      <td>₹25</td>
     </tr>
     <tr>
+      <td>2</td>
       <td>Breadboard</td>
       <td>Prototyping board</td>
-      <td>$5</td>
+      <td><a href="B08Q7BLB6H">Buy</a></td>
+      <td>₹5</td>
     </tr>
     <tr>
+      <td>3</td>
       <td>LED</td>
       <td>Indicator light</td>
-      <td>$0.10</td>
+      <td><a href="B08Q7BLB6H">Buy</a></td>
+      <td>₹0.10</td>
     </tr>
     <tr>
+      <td>4</td>
       <td>Resistor</td>
       <td>220 Ohm resistor for LED</td>
-      <td>$0.05</td>
+      <td><a href="B08Q7BLB6H">Buy</a></td>
+      <td>₹0.05</td>
     </tr>
   </tbody>
 </table>
