@@ -30,6 +30,13 @@ Tips for planning to make a CNC machine
       <td>₹ 307</td>
     </tr>
     <tr>
+      <td>4</td>
+      <td>Lead Screw 500mm</td>
+      <td>4 Start Lead Screw 8mm Thread 2mm Pitch Lead Screw with Copper Nut</td>
+      <td><a href="https://zbotic.in/product/500mm-trapezoidal-4-start-lead-screw-8mm-thread-2mm-pitch-lead-screw-with-copper-nut/">Buy</a></td>
+      <td>₹ 274</td>
+    </tr>
+    <tr>
       <td>3</td>
       <td>Lead Screw 150mm</td>
       <td>4 Start Lead Screw 8mm Thread 2mm Pitch Lead Screw with Copper Nut</td>
@@ -67,6 +74,7 @@ Tips for planning to make a CNC machine
 [![Watch the video](https://img.youtube.com/vi/0_AXoXkxtkk/hqdefault.jpg)](https://youtu.be/0_AXoXkxtkk)
 
 
+https://www.doubletreeautomation.in/stepper-motor.html
 
 
 
